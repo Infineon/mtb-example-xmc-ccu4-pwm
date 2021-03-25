@@ -8,7 +8,7 @@
 *
 ******************************************************************************
 *
-* Copyright (c) 2015-2020, Infineon Technologies AG
+* Copyright (c) 2015-2021, Infineon Technologies AG
 * All rights reserved.                        
 *                                             
 * Boost Software License - Version 1.0 - August 17th, 2003
@@ -42,7 +42,7 @@
 
 /*******************************************************************************
 * Macros
-*******************************************************************************/
+******************************************************************************/
 /* Defines priority level of the period match event interrupt */
 #define PWM_0_PERIOD_MATCH_EVENT_PRIORITY 63
 
@@ -64,7 +64,7 @@ int main(void)
 {
     cy_rslt_t result;
 
-    /* Initialize the device and board peripherals */
+    /*Initialize the device and board peripherals */
     result = cybsp_init();
     if (result != CY_RSLT_SUCCESS)
     {
