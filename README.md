@@ -1,10 +1,10 @@
 # XMC MCU: CCU4 PWM
 
-This code example demonstrates the use of CCU4 module to create a PWM signal. The CCU4 slice is configured in monoshot mode and is restarted on an external start event. The generated signal has a frequency of 2 Hz and 50% duty cycle.
+This code example demonstrates the use of the CCU4 module to create a PWM signal. The CCU4 slice is configured in monoshot mode and is restarted on an external start event. The generated signal has a frequency of 2 Hz and a 50% duty cycle.
 
 ## Requirements
 
-- [ModusToolbox® software](https://www.cypress.com/products/modustoolbox-software-environment) v2.3
+- [ModusToolbox&trade; software](https://www.cypress.com/products/modustoolbox-software-environment) v2.3
 - [SEGGER J-Link software](https://www.segger.com/downloads/jlink/#J-LinkSoftwareAndDocumentationPack)
 - Programming Language: C
 - Associated Parts: All [XMC™ MCU](https://www.infineon.com/cms/en/product/microcontroller/32-bit-industrial-microcontroller-based-on-arm-cortex-m/) parts
@@ -103,7 +103,7 @@ Various CLI tools include a `-h` option that prints help information to the term
 3. Confirm the operation of the example:
    1. If using [XMC1400 Boot Kit](https://www.infineon.com/cms/en/product/evaluation-boards/kit_xmc14_boot_001/), confirm that USER_LED blinks at approximately 4 Hz.
 
-   2. If using [XMC4700 Relax Kit](https://www.infineon.com/cms/en/product/evaluation-boards/kit_xmc47_relax_v1/), the signal at P0.15 in X2 connector should be resemble the one below.
+   2. If using [XMC4700 Relax Kit](https://www.infineon.com/cms/en/product/evaluation-boards/kit_xmc47_relax_v1/), the signal at P0.15 in X2 connector should resemble the one below.
 
       **Figure 1. PWM signal**
 
@@ -115,7 +115,17 @@ You can debug the example to step through the code. In the IDE, use the **\<Appl
 
 ## Design and Implementation
 
-The application uses a CCU4 slice configured using the CCU4 personality. PWM_0 CCU4 slice configured in compare mode. It will generate a PWM signal with a frequency of 2 Hz and 50% duty cycle (see **Figure 1. PWM signal**)
+In this example, the goal is to generate a PWM signal using the CCU4 slice.
+The CCU4 slice is configured in **Device Configurator** by the “**CCU4-1.0**”-personality (see Figure 2).
+
+**Figure 2. CCU4 Configuration**
+
+![1](images/ccu4slice.png)
+
+The slice is used in compare mode. Time period (250 ms.) of the signal can be calculated by multiplying **tick resolution** and **timer period value.** Tick resolution is found by dividing the core frequency (the value is available in the configuration window of “**CCU4 Global 1.0**” personality) by **prescaler**.
+
+
+In the main function, the interrupter will be initialized and used to restart the timer and clear the interrupt event flag (PWM_0_PERIOD_MATCH_EVENT_IRQN). The output signal can be seen in Figure 1.
 
 
 ## Related Resources
@@ -123,7 +133,7 @@ The application uses a CCU4 slice configured using the CCU4 personality. PWM_0 C
 | Application Notes                                            |                                                              |
 | :----------------------------------------------------------- | :----------------------------------------------------------- |
 | [IP_CCU4_XMC-TR](https://www.infineon.com/dgdl/Infineon-IP_CCU4_XMC-TR-v01_02-EN.pdf?fileId=5546d4624ad04ef9014b0780bb082263) – Capture Compare Unit4 (CCU4) | Provides an overview of the CCU4 module |
-| [AP32287](https://www.infineon.com/dgdl/Infineon-CCU4-XMC1000_XMC4000-AP32287-AN-v01_01-EN.pdf?fileId=5546d4624e765da5014ed8dd0f4614c0) – Capture Compare Unit4 (CCU4) | Provides a detail introduction to the key features of the CCU4 module |
+| [AP32287](https://www.infineon.com/dgdl/Infineon-CCU4-XMC1000_XMC4000-AP32287-AN-v01_01-EN.pdf?fileId=5546d4624e765da5014ed8dd0f4614c0) – Capture Compare Unit4 (CCU4) | Provides a detailed introduction to the key features of the CCU4 module |
 | **Kit Guides**                                            |                                                              |
 | [XMC4700/XMC4800 Relax Kit Series-V1](https://www.infineon.com/dgdl/Infineon-Board_User_Manual_XMC4700_XMC4800_Relax_Kit_Series-UM-v01_02-EN.pdf?fileId=5546d46250cc1fdf01513f8e052d07fc) – Board User‘s Manual | Describes the schematic and hardware of the XMC4700/XMC4800 Relax Kit Series-V1, equipped with an Arm® Cortex®-M4 based XMC™ Microcontroller from Infineon Technologies AG. |
 | [XMC1400 Boot Kit](https://www.infineon.com/dgdl/Infineon-Board_Users_Manual_XMC1400_Boot_Kit.pdf-UM-v01_00-EN.pdf?fileId=5546d462525dbac401527815f9a073fd) – Board User‘s Manual | Describes the schematic and hardware of XMC1400 Boot Kit for application code development on the XMC1404-Q064X0200 device.|
@@ -149,10 +159,11 @@ For XMC MCU devices, see [32-bit XMC™ Industrial Microcontroller based on Arm�
 
 Document Title: *CE231957* - *XMC MCU: CCU4 PWM*
 
-| Version | Description of Change |
-| ------- | --------------------- |
-| 0.5.0   | New code example      |
+| Version | Description of Change                         |
+| ------- | --------------------------------------------- |
+| 0.5.0   | New code example                              |
 | 1.0.0   | Updated to support ModusToolbox software v2.3 |
+| 1.0.1   | Updated README                                |
 ------
 
 All other trademarks or registered trademarks referenced herein are the property of their respective owners.
