@@ -10,8 +10,7 @@
                 </Block>
                 <Block location="ccu4[0].ch[0]">
                     <Alias value="PWM_0"/>
-                    <Personality template="xmc_ccu4" version="1.0">
-                        <Param id="init_start" value="false"/>
+                    <Personality template="xmc_ccu4" version="2.0">
                         <Param id="operation_mode" value="XMC_CCU4_SLICE_MODE_COMPARE"/>
                         <Param id="timer_initial_value" value="0"/>
                         <Param id="prescaler_mode" value="XMC_CCU4_SLICE_PRESCALER_MODE_NORMAL"/>
@@ -89,6 +88,7 @@
                         <Param id="external_event1_sr" value="0"/>
                         <Param id="enable_external_event2" value="false"/>
                         <Param id="external_event2_sr" value="0"/>
+                        <Param id="init_start" value="false"/>
                         <Param id="inFlash" value="true"/>
                     </Personality>
                 </Block>
@@ -178,12 +178,15 @@
                 </Block>
                 <Block location="scu[0].clock[0].dco1[0]">
                     <Personality template="xmc1_dco1" version="1.0">
+                        <Param id="accuracy" value="4"/>
                         <Param id="calibration_enable" value="true"/>
                         <Param id="calibration_mode" value="XMC_SCU_CLOCK_SYNC_CLKSRC_OSCHP"/>
                     </Personality>
                 </Block>
                 <Block location="scu[0].clock[0].dco2[0]">
-                    <Personality template="xmc1_dco2" version="1.0"/>
+                    <Personality template="xmc1_dco2" version="1.0">
+                        <Param id="accuracy" value="4"/>
+                    </Personality>
                 </Block>
                 <Block location="scu[0].clock[0].fdivclk[0]">
                     <Personality template="xmc1_fdivclk" version="1.0">
@@ -196,6 +199,7 @@
                     <Personality template="xmc1_oschp" version="1.0">
                         <Param id="mode" value="XMC_SCU_CLOCK_OSCHP_MODE_OSC"/>
                         <Param id="ext_frequency" value="20.000"/>
+                        <Param id="accuracyPpm" value="50"/>
                     </Personality>
                 </Block>
                 <Block location="scu[0].clock[0].periclk[0]">

@@ -45,6 +45,12 @@
 /* Defines priority level of the period match event interrupt */
 #define PWM_0_PERIOD_MATCH_EVENT_PRIORITY 63
 
+/* Defines handler of the period match event interrupt */
+#define PWM_0_PERIOD_MATCH_EVENT_HANDLER CCU40_0_IRQHandler
+
+/* Defines IRQ number of the period match event interrupt */
+#define PWM_0_PERIOD_MATCH_EVENT_IRQN CCU40_0_IRQn
+
 /*******************************************************************************
 * Function Name: main
 ********************************************************************************
